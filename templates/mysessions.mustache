@@ -40,6 +40,9 @@
                 {{/isExternalUser}}
                 {{^ isExternalUser}}
                     <div class="no-sessions-message">{{# str}}no_search_result_sessions, block_mysessions{{/str}}</div>
+                    <div class="no-sessions-enroltosession">
+                        <a href="{{ catalogurl }}">{{# str}}no_sessions_enroltosession, block_mysessions{{/str}}</a>
+                    </div>
                 {{/isExternalUser}}
             {{/isSearch}}
             {{^isSearch}}
