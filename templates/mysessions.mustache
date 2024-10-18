@@ -33,15 +33,31 @@
         {{/sessionscount}}
         {{^sessionscount}}
             <div class="no-sessions-pix">{{# pix }} empty-state, block_mysessions{{/ pix }}</div>
-            <div class="no-sessions-message">{{# str}}no_sessions, block_mysessions{{/str}}</div>
-            <div class="no-sessions-enroltosession">
-                <a href="{{ catalogurl }}">{{# str}}no_sessions_enroltosession, block_mysessions{{/str}}</a>
-            </div>
+           
+            {{#isSearch}}
+                {{# isExternalUser}}
+                    <div class="no-sessions-message">{{# str}}no_search_result_sessions_external_user, block_mysessions{{/str}}</div>
+                {{/isExternalUser}}
+                {{^ isExternalUser}}
+                    <div class="no-sessions-message">{{# str}}no_search_result_sessions, block_mysessions{{/str}}</div>
+                {{/isExternalUser}}
+            {{/isSearch}}
+            {{^isSearch}}
+                {{# isExternalUser}}
+                    <div class="no-sessions-message" style=" margin-bottom: 30px;">{{# str}}no-sessions-message-external_user, block_mysessions{{/str}}</div>
+                {{/isExternalUser}}
+                {{^ isExternalUser}}
+                    <div class="no-sessions-message">{{# str}}no_sessions, block_mysessions{{/str}}</div>
+                    <div class="no-sessions-enroltosession">
+                        <a href="{{ catalogurl }}">{{# str}}no_sessions_enroltosession, block_mysessions{{/str}}</a>
+                    </div>
+                {{/isExternalUser}}
+            {{/isSearch}}           
         {{/sessionscount}}
     </div>
     {{#sessionscount}}
         <div class="sessions-nav">
-            <nav aria-label="Navigation">
+            <nav  aria-label="pagination">
                 <ul id="mysessions-pagination" class="mentor-pagination"></ul>
             </nav>
         </div>

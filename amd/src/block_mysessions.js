@@ -16,6 +16,16 @@ define([
             $('.block_mysessions .training-sheet .list-sessions .target-header-title')
                 .text(M.util.get_string('session', 'block_mysessions'));
 
+            //Shift to the left if no session title is displayed
+                if(document.getElementById("title-sessions") === null)
+                {
+                    $("#show-completed-session").css("position","static");
+                }else{
+                    $("#show-completed-session").css("position","");
+                }
+                    
+
+
             // Init session block pagination : 12 sessions per page
             // If showsessioncompleted is :
             // - True : Show all session.

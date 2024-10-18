@@ -65,12 +65,17 @@ class mysessions implements renderable, templatable {
      * @throws \moodle_exception
      */
     public function export_for_template(renderer_base $output) {
-        global $USER, $CFG;
-
+        global $USER, $CFG, $DB;
+        
         require_once($CFG->dirroot . '/local/mentor_core/api/session.php');
 
+        //Check if user has role externaluser
+        $externalrole = $DB->get_record('role', array('shortname' => 'utilisateurexterne'), '*', MUST_EXIST);
+        $isExternalUser = $DB->get_records('role_assignments', array('userid' => $USER->id, 'roleid' => $externalrole->id));
+        
+        $searchText = optional_param('search',null,PARAM_RAW);
         // Get data for the block.
-        $sessionsenrol = \local_mentor_core\session_api::get_user_sessions($USER->id, false, false);
+        $sessionsenrol = \local_mentor_core\session_api::get_user_sessions($USER->id, false, false,$searchText);
 
         usort($sessionsenrol, "local_mentor_core_usort_favourite_session_first");
 
@@ -106,12 +111,15 @@ class mysessions implements renderable, templatable {
             $finalsessions[] = $sessionenrol;
         }
 
+
         // Create data for the template block.
         $templateparams = new \stdClass();
         $templateparams->sessions = $finalsessions;
         $templateparams->sessionscount = count($finalsessions);
         $templateparams->catalogurl = $CFG->wwwroot . '/local/catalog/index.php';
         $templateparams->hassessioncompleted = $hassessioncompleted;
+        $templateparams->isSearch = !is_null($searchText);
+        $templateparams->isExternalUser = $isExternalUser;
 
         // Return data for the template block.
         return $templateparams;

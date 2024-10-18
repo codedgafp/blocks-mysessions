@@ -31,6 +31,10 @@ $string['no_sessions_enroltosession'] = 'Offre de formation Mentor';
 $string['privacy:metadata'] = 'My sessions block only shows data stored in other locations.';
 $string['no_sessions']
     = 'Pour vous inscrire à une session de formation, recherchez dans l\'offre en cliquant sur le bouton ci-dessous.';
+$string['no-sessions-message-external_user'] = 'Vous n\'êtes incrit à aucune session de formation.';
+    
+$string['no_search_result_sessions'] = 'Aucune session de formation ne correspond à votre demande. Vous pouvez modifier votre recherche ou consulter l\'offre en cliquant sur le bouton ci-dessous.';
+$string['no_search_result_sessions_external_user'] = 'Aucune session de formation ne correspond à votre demande.';
 
 $string['trainer'] = 'Formateur';
 $string['tutor'] = 'Tuteur';

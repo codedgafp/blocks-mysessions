@@ -117,20 +117,26 @@ class block_mysessions extends block_base {
      * @throws coding_exception
      */
     public function get_content() {
-
+       
         // Get instance of page renderer.
         $renderer = $this->page->get_renderer('block_mysessions');
 
         // Get template with data rendarable.
         $renderable = new \block_mysessions\output\mysessions($this->config);
 
+        //Get user's training count
+        $renderableTraining = new \block_mytrainings\output\mytrainings($this->config);
+        $trainingsCount = $renderableTraining->export_for_template($renderer)->trainingscount;
+      
         // Create content for the block.
         $this->content = new stdClass();
-        $this->content->text = '<h2>' . $this->title . '</h2>';
+        $this->content->text = ($trainingsCount > 0) ? '<h2 id="title-sessions">' . $this->title . '</h2>' : "" ;
         $this->content->text .= $renderer->render($renderable);
         $this->content->footer = '';
 
         // Return content block.
         return $this->content;
+         
+       
     }
 }
