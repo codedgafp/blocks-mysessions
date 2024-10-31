@@ -6,6 +6,7 @@
 @picturewidthsmall: 300px;
 @pictureheightsmall: 200px;
 @pictureheightsmalllaptop: 180px;
+@size-sm: 375px;
 
 #page-my-index {
 
@@ -17,7 +18,13 @@
 
   .block_mysessions {
     .card-text {
-      margin: 0 !important;
+           
+      @media (min-width: @size-sm) {
+        margin: 0 !important;
+      }
+      @media (max-width: @size-sm) {
+        margin: 0;
+      }
     }
   }
 
@@ -103,6 +110,10 @@
         grid-gap: 10px 2em;
         grid-template-columns: repeat(auto-fit, minmax(@picturewidth, max-content));
         justify-content: center;
+        
+        @media (max-width: @size-sm) {
+          margin-left: 5px;
+        }
 
         @media (max-width: @smallscreen) {
           grid-template-columns: repeat(auto-fit, minmax(@picturewidthsmall, max-content));
