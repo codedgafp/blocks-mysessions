@@ -44,7 +44,6 @@ class session_favourite_controller extends controller_base {
      * @return array
      */
     public function execute() {
-
         try {
             $action = $this->get_param('action');
             $sessionid = $this->get_param('sessionid', PARAM_INT);
@@ -52,7 +51,6 @@ class session_favourite_controller extends controller_base {
         } catch (\Exception $e) {
             return $this->error($e->getMessage());
         }
-
     }
 
     /**

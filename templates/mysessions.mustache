@@ -23,7 +23,9 @@
                 <label for="input-show-completed-session">{{# str }} showcompletedsession, block_mysessions {{/str}}</label>
             </div>
         {{/ hassessioncompleted }}
-        <div id="enroltosession"><a href="{{ catalogurl }}" class="fr-fi-arrow-right-line">{{# str}}enroltosession, block_mysessions{{/str}}</a></div>
+        {{^ isExternalUser}}
+            <div id="enroltosession"><a href="{{ catalogurl }}" class="fr-fi-arrow-right-line">{{# str}}enroltosession, block_mysessions{{/str}}</a></div>
+        {{/isExternalUser}}    
     {{/sessionscount}}
     <div class="sessions-grid">
         {{#sessionscount}}

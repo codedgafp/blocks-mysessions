@@ -27,6 +27,8 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 
+require_once($CFG->dirroot . '/local/mentor_core/classes/controllers/front_controller.php');
+
 class block_mysessions_favourite_controller_testcase extends advanced_testcase {
     /**
      * Reset the singletons
