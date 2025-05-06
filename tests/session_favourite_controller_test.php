@@ -27,6 +27,8 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 
+use block_mysessions\helper\testhelper;
+
 require_once($CFG->dirroot . '/local/mentor_core/classes/controllers/front_controller.php');
 
 class block_mysessions_favourite_controller_testcase extends advanced_testcase {
@@ -174,8 +176,11 @@ class block_mysessions_favourite_controller_testcase extends advanced_testcase {
 
         $session = $this->init_create_session();
 
-        $DB->delete_records('user_info_field');
+        testhelper::create_default_entity($this);
         $user = self::getDataGenerator()->create_user();
+
+        $DB->delete_records('user_info_field');
+
         self::setUser($user);
 
         $DB->delete_records('favourite');
@@ -231,8 +236,11 @@ class block_mysessions_favourite_controller_testcase extends advanced_testcase {
 
         $session = $this->init_create_session();
 
-        $DB->delete_records('user_info_field');
+        testhelper::create_default_entity($this);
         $user = self::getDataGenerator()->create_user();
+
+        $DB->delete_records('user_info_field');
+
         self::setUser($user);
 
         $DB->delete_records('favourite');
