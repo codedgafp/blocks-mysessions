@@ -83,9 +83,26 @@ define([
             });
 
             $('.block_mysessions .fav').keypress(function (event) {
-                if (event.which == 13) {
+                if (event.which == 13  || event.which === 32) {
+                    event.preventDefault();
+                    event.stopPropagation();
                     var currentTarget = $(event.currentTarget);
                     $(currentTarget).click();
+                }
+            });
+
+            $(document).on('keydown', '.block_mysessions .block-session-tile', function(event) {
+                if (event.which === 32) { // Spacebar
+                    event.preventDefault(); 
+                    this.click();
+                }
+            });
+
+            $(document).on('keydown', '.block_mysessions .session-more-information', function(event) {
+                if (event.which == 13 || event.which === 32) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    $(this).click();
                 }
             });
         },
