@@ -82,7 +82,7 @@ define([
                 }
             });
 
-            $('.block_mysessions .fav').keypress(function (event) {
+            $('.block_mysessions .fav').on('keydown', function (event) {
                 if (event.which == 13  || event.which === 32) {
                     event.preventDefault();
                     event.stopPropagation();
