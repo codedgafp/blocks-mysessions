@@ -32,6 +32,7 @@ use renderer_base;
 use templatable;
 
 require_once($CFG->dirroot . '/local/mentor_core/lib.php');
+require_once($CFG->dirroot . '/blocks/mytrainings/lib.php');
 
 /**
  * Class containing data for mysessions block.
@@ -69,18 +70,24 @@ class mysessions implements renderable, templatable {
         
         require_once($CFG->dirroot . '/local/mentor_core/api/session.php');
 
+         // Get data for the block.
+        $searchText = optional_param('search',null,PARAM_RAW);
+        $sessionsenrol = \local_mentor_core\session_api::get_user_sessions($USER->id, false, false,$searchText);
+
         //Check if user has role externaluser
         $externalrole = $DB->get_record('role', array('shortname' => 'utilisateurexterne'), '*', MUST_EXIST);
         $isExternalUser = $DB->get_records('role_assignments', array('userid' => $USER->id, 'roleid' => $externalrole->id));
-        
-        $searchText = optional_param('search',null,PARAM_RAW);
-        // Get data for the block.
-        $sessionsenrol = \local_mentor_core\session_api::get_user_sessions($USER->id, false, false,$searchText);
+        $userNotEnrolled = false;
+        if(!empty($isExternalUser)){
+            // Get all user courses.
+            $userTrainings = block_mytrainings_get_all_user_trainings($USER->id);
+            $userNotEnrolled = empty($userTrainings) && empty($sessionsenrol);
+        }   
 
         usort($sessionsenrol, "local_mentor_core_usort_favourite_session_first");
 
-        // Data for the training and session sheet.
-        $trainings = [];
+        // Data for session sheet.
+  
         $finalsessions = [];
 
         // If there is at least one full session.
@@ -120,6 +127,8 @@ class mysessions implements renderable, templatable {
         $templateparams->hassessioncompleted = $hassessioncompleted;
         $templateparams->isSearch = !is_null($searchText);
         $templateparams->isExternalUser = $isExternalUser;
+        $templateparams->userNotEnrolled = $userNotEnrolled;
+        $templateparams->plateformUrl = $CFG->wwwroot;
 
         // Return data for the template block.
         return $templateparams;

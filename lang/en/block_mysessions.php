@@ -51,3 +51,18 @@ $string['session'] = 'Session';
 $string['moreinfo'] = 'Plus d\'info sur {$a}';
 $string['moreinfotile'] = 'En savoir plus';
 $string['showcompletedsession'] = 'Afficher les sessions terminées';
+
+$string['no-enroll-message-external_user'] = '
+                <div class="mentor-card container-fluid important mentor-card-external-user-info">
+                    <div class="col-md-2 col-lg-2 mentor-card-left" >
+                        <div>Important</div>
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-10 mentor-card-content" style="flex: 1;">
+                            <h5><span style="font-weight: normal;">Votre compte sur la plateforme interministérielle de formation Mentor est basé sur une adresse de messagerie non reconnue comme celle d’un partenaire officiel du programme Mentor. Ce compte ne permet donc pas de consulter notre offre de formation.</span></h5>
+                            <h5><span style="font-weight: normal;">Si vous êtes bien un agent de la fonction publique d’État mais que votre compte Mentor n’est pas lié à votre adresse de messagerie professionnelle. Vous pouvez modifier votre profil en toute autonomie en cliquant sur le lien suivant : <a href="{$a}/user/profile.php">{$a}/user/profile.php</a></span></h5>
+                            <h5><span style="font-weight: normal;">Si vous n\'êtes pas un agent de la fonction publique d’État, vous ne faites pas partie du périmètre du programme Mentor. Votre compte sera alors supprimé automatiquement d\'ici quelques jours sans action de votre part.</span></h5>
+                            <h5><span style="font-weight: normal;">Néanmoins, si vous estimez que votre adresse devrait être reconnue comme légitime car vous faites partie de la fonction publique d’État, vous devez alors prendre contact avec le représentant Mentor de votre ministère de tutelle pour clarifier la situation (<a href="{$a}/local/staticpage/view.php?page=contact">{$a}/local/staticpage/view.php?page=contact</a>).</span></h5>
+                            <h5><span style="font-weight: normal;">Si vous souhaitez connaître les domaines de messagerie autorisés sur la plateforme Mentor, vous pouvez consulter la liste en bas de cette page : <a href="{$a}/local/staticpage/view.php?page=ensavoirplus">{$a}/local/staticpage/view.php?page=ensavoirplus</a></span></h5></div>
+                    </div>  
+                </div>';

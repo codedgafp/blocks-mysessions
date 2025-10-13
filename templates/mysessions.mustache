@@ -33,10 +33,10 @@
                 {{> block_mysessions/session-tile }}
             </div>
         {{/sessionscount}}
-        {{^sessionscount}}
-            <div class="no-sessions-pix">{{# pix }} empty-state, block_mysessions{{/ pix }}</div>
-           
+
+        {{^sessionscount}}            
             {{#isSearch}}
+            <div class="no-sessions-pix">{{# pix }} empty-state, block_mysessions{{/ pix }}</div>           
                 {{# isExternalUser}}
                     <div class="no-sessions-message">{{# str}}no_search_result_sessions_external_user, block_mysessions{{/str}}</div>
                 {{/isExternalUser}}
@@ -49,9 +49,18 @@
             {{/isSearch}}
             {{^isSearch}}
                 {{# isExternalUser}}
-                    <div class="no-sessions-message" style=" margin-bottom: 30px;">{{# str}}no-sessions-message-external_user, block_mysessions{{/str}}</div>
+                    {{# userNotEnrolled}}
+                        <div class="no-sessions-message-external-user">
+                            {{# str}}no-enroll-message-external_user, block_mysessions, {{ plateformUrl }}{{/str}}
+                        </div>
+                    {{/userNotEnrolled}}    
+                    {{^ userNotEnrolled}}
+                        <div class="no-sessions-pix">{{# pix }} empty-state, block_mysessions{{/ pix }}</div>
+                                   <div class="no-sessions-message" style=" margin-bottom: 30px;">{{# str}}no-sessions-message-external_user, block_mysessions{{/str}}</div>
+                    {{/userNotEnrolled}}
                 {{/isExternalUser}}
                 {{^ isExternalUser}}
+                    <div class="no-sessions-pix">{{# pix }} empty-state, block_mysessions{{/ pix }}</div>
                     <div class="no-sessions-message">{{# str}}no_sessions, block_mysessions{{/str}}</div>
                     <div class="no-sessions-enroltosession">
                         <a href="{{ catalogurl }}">{{# str}}no_sessions_enroltosession, block_mysessions{{/str}}</a>
@@ -59,7 +68,7 @@
                 {{/isExternalUser}}
             {{/isSearch}}           
         {{/sessionscount}}
-    </div>
+    
     {{#sessionscount}}
         <div class="sessions-nav">
             <nav  aria-label="pagination">
