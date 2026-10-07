@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,6 +16,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 defined('MOODLE_INTERNAL') || die();
+
+use local_mentor_core\profile_api;
 
 /**
  * My sessions block.
@@ -102,7 +105,7 @@ class block_mysessions extends block_base {
         $params = [
             // Get show completed session user preference.
             // If equals 1 or false (no preference register) is true.
-            'showsessioncompleted' => \local_mentor_core\profile_api::get_user_preference($USER->id,
+            'showsessioncompleted' => profile_api::get_user_preference($USER->id,
                     'block_mysessions_completed')
                                       !== '0',
         ];
