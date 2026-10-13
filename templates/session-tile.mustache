@@ -16,10 +16,8 @@
 }}
 
 {{#sessions}}
-    <a
-            class="block-session-tile {{ iscompleted }} {{ nolink }}"
+    <div class="block-session-tile {{ iscompleted }} {{ nolink }}"
             style="display: none;"
-            {{{ courseurl }}}
             tabindex="0"
             title="{{ fullname }}">
         <div class="session-tile-thumbnail">
@@ -31,9 +29,9 @@
             </div>
         </div>
         <div class="information {{ status }}" data-session-id="{{id}}">
-            <h3 class="name {{ css_isopenedregistration }} {{ css_completed }}">
+            <a {{{ courseurl }}} class="block-session-tile-url name {{ css_isopenedregistration }} {{ css_completed }}">
                 {{ fullname }}
-            </h3>
+            </a>
             <p class="status {{ css_completed }}">
                 {{{ statusinformation }}}
             </p>
@@ -43,5 +41,5 @@
             {{{ inprogressshowprogress }}}
             {{{ favouritebutton }}}
         </div>
-    </a>
+    </div>
 {{/sessions}}
