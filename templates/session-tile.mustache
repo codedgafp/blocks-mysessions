@@ -24,20 +24,24 @@
             <div class="session-tile-thumbnail-size">
                 {{{ thumbnail }}}
             </div>
-            <div class="session-tile-labels">
-                {{{ str_labels }}}
-            </div>
         </div>
         <div class="information {{ status }}" data-session-id="{{id}}">
             <a {{{ courseurl }}} class="block-session-tile-url name {{ css_isopenedregistration }} {{ css_completed }}">
                 {{ fullname }}
             </a>
+
+            <div class="session-tile-labels">
+                {{{ str_labels }}}
+            </div>
+
             <p class="status {{ css_completed }}">
                 {{{ statusinformation }}}
             </p>
+
             <div class="session-more-information" data-training-id="{{trainingid}}" data-session-id="{{id}}"  tabindex="0">
                 {{ str_moreinfotile }} <i class="fr-fi-arrow-right-line" aria-hidden="true"></i>
             </div>
+
             {{{ inprogressshowprogress }}}
             {{{ favouritebutton }}}
         </div>
